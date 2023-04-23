@@ -8,7 +8,7 @@
       height: 2px;
       width: 2px;
       right: -10px;
-      animation: right-to-left 3s linear normal infinite forwards;
+      animation: right-to-left 3.3s linear normal infinite forwards;
     }
     @keyframes right-to-left {
       100% {
@@ -29,13 +29,15 @@
     }
     .tree {
       position: absolute;
-      top: 200px;
-      right: 50px;
-      animation: tree-right-to-left 5s linear infinite forwards;
+      right: -50px;
+      animation: tree-right-to-left 6s linear infinite forwards;
     }
     @keyframes tree-right-to-left {
+      0%{
+        transform: translateX(200px);
+      }
       100% {
-        transform: translateX(-500px);
+        transform: translateX(-700px);
       }
     }
   </style>
@@ -92,9 +94,9 @@
           overflow: hidden;
         "
       >
-        <img class="tree" src="../src/files/tree_one.png" alt="" />
-        <img class="tree" src="../src/files/tree_two.png" alt="" />
-        <img class="tree" src="../src/files/tree_three.png" alt="" />
+        <img class="tree" style="animation-delay: 4s;top: 20px;" src="../src/files/tree_one.png" alt="" />
+        <img class="tree" style="top: 43px;" src="../src/files/tree_two.png" alt="" />
+        <img class="tree" style="animation-delay: 1.5s; top: 40px;" src="../src/files/tree_three.png" alt="" />
       </div>
       <img
         id="game_over"
@@ -113,7 +115,8 @@
       >
         <img
           id="cloud"
-          class="cloud absolute right-[-40px] top-4 w-20"
+          class="cloud "
+          style="position: absolute; right: -40px; top: 16px; width: 80px;"
           src="./files/cloud.png"
           alt=""
         />
@@ -121,7 +124,7 @@
           id="cloud"
           class="cloud"
           style="
-            animation-delay: 6s;
+            animation-delay: 4s;
             position: absolute;
             right: -100px;
             top: 20px;
@@ -136,7 +139,7 @@
           style="
             animation-delay: 3s;
             position: absolute;
-            right: 20px;
+            right: -70px;
             top: 24px;
             width: 64px;
           "
