@@ -1,18 +1,50 @@
-<!doctype html>
-<html class="m-0 p-0 box-border font-sans"><!-- set default styles -->
-    <style>
-        *{}
-    </style>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="/src/output.css" rel="stylesheet">
-  <script src="../dist/main.js" defer></script>
-</head>
-<body>
-  <h1 class="text-3xl font-bold text-purple-800 bg-red-300">
-    Hello world!
-  </h1>
-</body>
-<script src=""></script>
+<!DOCTYPE html>
+<html class="m-0 box-border p-0 font-sans">
+  <!-- set default styles -->
+  <style>
+    * {
+    }
+
+  </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/src/output.css" rel="stylesheet" />
+  </head>
+  <body class="w-[500px] relative">
+    <div class="absolute w-[500px] h-4 z-20 bg-white top-0"></div>
+    <div class="relative">
+      <div id="dots" class=" relative w-full h-[270px] overflow-hidden top-2"><!--  dots -->
+        <hr class=" dot top-[235px] " style="animation-delay: 1s; "/>
+        <hr class=" dot top-[240px] " style="animation-delay: 1.2s; " />
+      </div>
+      <hr
+        class="w-100 absolute left-0 right-0 top-[230px] h-[1.5px] bg-black"//ground
+      />
+      <img
+        id="t_rex_2"
+        class="absolute z-50 left-10 top-[177.5px] w-[60px]"
+        src="./files/runner_trex.gif"
+        alt=""
+      />
+      <img
+        id="t_rex"
+        class="absolute top-[150px] hidden w-20"
+        src="./files/runner_trex_2.gif"
+        alt=""
+      />
+      <img
+        id="game_over"
+        class="hidden w-20"
+        src="./files/game_over.gif"
+        alt=""
+      />
+      <div class=" absolute top-0 w-[500px] h-[200px] overflow-hidden">
+        <img id="cloud" class="cloud w-20 absolute top-4 right-[-40px]" src="./files/cloud.png" alt="" />
+        <img id="cloud" class="cloud w-24 absolute top-5 right-[-100px]" style="animation-delay: 6s;" src="./files/cloud.png" alt="" />
+        <img id="cloud" class="cloud w-16 absolute top-6 right-[20px]"style="animation-delay: 3s; src="./files/cloud.png" alt="" /> 
+      </div>
+    </div>
+  </body>
+  <script src="../dist/main.js"></script>
 </html>
