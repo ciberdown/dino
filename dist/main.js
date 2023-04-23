@@ -31,15 +31,14 @@ class Dino {
     }
     trees_moving() {
     }
-    clouds_moving() {
-    }
     ground_dots_moving() {
         for (let i = 1; i < 500; i++) {
             const newDot = document.createElement("hr");
-            const dot_top = "top-[" + (Math.floor(Math.random() * 20) + 220) + "px]";
-            const ani_delay = Math.random() * 6 + "s";
-            newDot.classList.add("dot", dot_top, 'z-10');
+            const dot_top = (Math.floor(Math.random() * 10) + 252) + "px";
+            const ani_delay = Math.random() * 10 + "s";
+            newDot.classList.add("dot", "z-10");
             newDot.style.animationDelay = ani_delay;
+            newDot.style.top = dot_top;
             const dots = document.getElementById("dots");
             dots === null || dots === void 0 ? void 0 : dots.appendChild(newDot);
         }

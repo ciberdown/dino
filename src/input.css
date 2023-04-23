@@ -1,31 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer utilities{ /*  genrate new class?? */
-  .dot{
-    position: absolute;
-    background-color: black;
-    height: 2px;
-    width: 2px;
-    right: -10px;
-    animation: right-to-left 3s linear normal infinite forwards;
-  }
-  @keyframes right-to-left {
+@layer utilities {
+  /*  genrate new class?? */
 
-    100%{
-      transform: translateX(-500px);
-    }
-  }
-  @keyframes cloud-right-to-left {
-    0%{
-      transform: translateX(100px);
-    }
-    100%{
-      transform: translateX(-600px);
-    }
-  }
-  .cloud{
-    position: absolute;
-    animation: cloud-right-to-left 30s linear 0s infinite forwards ;
-  }
 }

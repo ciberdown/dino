@@ -24,7 +24,7 @@ class Dino {
   set jump_mt(num: number) {
     if (num > 0) this._jump_mt = num;
   }
-  game_logic_control(){
+  game_logic_control() {
     this.ground_dots_moving();
   }
   jump() {
@@ -39,13 +39,15 @@ class Dino {
   ground_dots_moving() {
     for (let i = 1; i < 500; i++) {
       const newDot: HTMLHRElement = <HTMLHRElement>document.createElement("hr");
-      const dot_top: string = "top-[" + (Math.floor(Math.random() * 20) + 220) + "px]";
-      const ani_delay: string = Math.random() * 6 + "s";
-      newDot.classList.add("dot", dot_top, 'z-10');
+      const dot_top: string =(Math.floor(Math.random() * 10) + 252) + "px";
+
+      const ani_delay: string = Math.random() * 10 + "s";
+      newDot.classList.add("dot", "z-10");
       newDot.style.animationDelay = ani_delay;
+      newDot.style.top = dot_top;
       const dots = document.getElementById("dots");
       dots?.appendChild(newDot);
-    }    
+    }
   }
   gameOver() {
     //check game over!
@@ -59,4 +61,3 @@ class Dino {
   }
 }
 const dino = new Dino();
-
