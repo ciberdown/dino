@@ -88,9 +88,32 @@ class Dino {
                     ((_c = this._trees[i]) === null || _c === void 0 ? void 0 : _c.getBoundingClientRect().top) <
                         this._t_rex.getBoundingClientRect().bottom) {
                     console.log("game crashed!");
+                    this.stop_animation();
+                    clearInterval(check_collision);
                 }
             }
         }, 100);
+    }
+    stop_animation() {
+        var _a, _b;
+        this._t_rex.style.display = "none";
+        const game_over = document.getElementById("game_over");
+        game_over.style.display = "block";
+        for (let i = 0; i < this._trees.length; i++) {
+            this._trees[i].style.animationPlayState = "paused";
+        }
+        const clouds = (_a = document.getElementById("clouds")) === null || _a === void 0 ? void 0 : _a.children;
+        if (clouds !== undefined)
+            for (let i = 0; i < clouds.length; i++) {
+                const cloud = clouds === null || clouds === void 0 ? void 0 : clouds[i];
+                cloud.style.animationPlayState = "paused";
+            }
+        const dots = (_b = document.getElementById("dots")) === null || _b === void 0 ? void 0 : _b.children;
+        if (dots !== undefined)
+            for (let i = 0; i < dots.length; i++) {
+                const dot = dots === null || dots === void 0 ? void 0 : dots[i];
+                dot.style.animationPlayState = "paused";
+            }
     }
     restartGame() {
     }

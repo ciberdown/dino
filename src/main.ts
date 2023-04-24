@@ -2,7 +2,7 @@ class Dino {
   private _jump_mt: number = 1; //*130
   private _jump_sec: number = 1; //*1.5
   private _speed_num: number = 1;
-  private  _trees: HTMLImageElement[] = <HTMLImageElement[]>[
+  private _trees: HTMLImageElement[] = <HTMLImageElement[]>[
     document.getElementById("tree-one"),
     document.getElementById("tree-two"),
     document.getElementById("tree-three"),
@@ -101,7 +101,6 @@ class Dino {
   }
   gameOver() {
     //check game over!
-
     const check_collision: NodeJS.Timer = setInterval(() => {
       for (let i = 0; i < this._trees.length; i++) {
         if (
@@ -113,9 +112,34 @@ class Dino {
             this._t_rex.getBoundingClientRect().bottom
         ) {
           console.log("game crashed!");
+          this.stop_animation();
+          clearInterval(check_collision);
         }
       }
     }, 100);
+  }
+  stop_animation() {
+    this._t_rex.style.display = "none";
+    const game_over:HTMLImageElement =<HTMLImageElement>document.getElementById("game_over");
+    game_over.style.display = "block";
+    for (let i = 0; i < this._trees.length; i++) {
+      //pusing trees
+      this._trees[i].style.animationPlayState = "paused";
+    }
+    const clouds = document.getElementById("clouds")?.children;
+    if (clouds !== undefined)
+      for (let i: number = 0; i < clouds.length; i++) {
+        //pusing clouds
+        const cloud: HTMLImageElement = <HTMLImageElement>clouds?.[i];
+        cloud.style.animationPlayState = "paused";
+      }
+    const dots = document.getElementById("dots")?.children;
+    if (dots !== undefined)
+      for (let i: number = 0; i < dots.length; i++) {
+        //pusing clouds
+        const dot: HTMLDivElement = <HTMLDivElement>dots?.[i];
+        dot.style.animationPlayState = "paused";
+      }
   }
   restartGame() {
     //restart whole game

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html class="" style="margin: 0; box-sizing: border-box; padding: 0;">
+<html class="" style="margin: 0; box-sizing: border-box; padding: 0">
   <!-- set default styles -->
-  <style>
-   
-  </style>
+  <style></style>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,6 +45,19 @@
         src="./files/trex_8bit.gif"
         alt=""
       />
+      <img
+        id="game_over"
+        style="
+        display: none;
+          position: absolute;
+          left: 40px;
+          top: 205px;
+          z-index: 50;
+          width: 55px;
+        "
+        src="./files/game_over.gif"
+        alt=""
+      />
       <div
         id="trees"
         style="
@@ -57,18 +68,31 @@
           overflow: hidden;
         "
       >
-        <img class="tree" id="tree-one" style="animation-delay: 4s;top: 20px;" src="../src/files/tree_one.png" alt="" />
-        <img class="tree" id="tree-two" style="top: 43px;" src="../src/files/tree_two.png" alt="" />
-        <img class="tree" id="tree-three" style="animation-delay: 1.5s; top: 40px;" src="../src/files/tree_three.png" alt="" />
+        <img
+          class="tree"
+          id="tree-one"
+          style="animation-delay: 4s; top: 20px"
+          src="../src/files/tree_one.png"
+          alt=""
+        />
+        <img
+          class="tree"
+          id="tree-two"
+          style="top: 43px"
+          src="../src/files/tree_two.png"
+          alt=""
+        />
+        <img
+          class="tree"
+          id="tree-three"
+          style="animation-delay: 1.5s; top: 40px"
+          src="../src/files/tree_three.png"
+          alt=""
+        />
       </div>
-      <img
-        id="game_over"
-        class=""
-        style="display: none; width: 5rem;"
-        src="./files/game_over.gif"
-        alt=""
-      />
+
       <div
+        id="clouds"
         style="
           position: absolute;
           top: 0;
@@ -79,8 +103,8 @@
       >
         <img
           id="cloud"
-          class="cloud "
-          style="position: absolute; right: -40px; top: 16px; width: 80px;"
+          class="cloud"
+          style="position: absolute; right: -40px; top: 16px; width: 80px"
           src="./files/cloud.png"
           alt=""
         />
