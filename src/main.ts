@@ -2,6 +2,11 @@ class Dino {
   private _jump_mt: number = 1; //*130
   private _jump_sec: number = 1; //*1.5
   private _speed_num: number = 1;
+  private  _trees: HTMLImageElement[] = <HTMLImageElement[]>[
+    document.getElementById("tree-one"),
+    document.getElementById("tree-two"),
+    document.getElementById("tree-three"),
+  ];
   readonly header_text_one: string = "T-Rex Chrome Dino Game";
   readonly text_one: string =
     "T-Rex Dinosaur - a replica of the hidden game from Chrome offline mode. Press Space to start the game online and jump your Dino, use down arrow (↓) to duck.";
@@ -12,6 +17,7 @@ class Dino {
     this._jump_mt = this._jump_mt;
     this._jump_sec = this._jump_sec;
     this._speed_num = this._speed_num;
+    this._trees = this._trees;
     this.game_logic_control();
   }
   get jump_sec(): number {
@@ -95,19 +101,15 @@ class Dino {
   }
   gameOver() {
     //check game over!
-    const trees: HTMLImageElement[] = <HTMLImageElement[]>[
-      document.getElementById("tree-one"),
-      document.getElementById("tree-two"),
-      document.getElementById("tree-three"),
-    ];
+
     const check_collision: NodeJS.Timer = setInterval(() => {
-      for (let i = 0; i < trees.length; i++) {
+      for (let i = 0; i < this._trees.length; i++) {
         if (
-          trees[i]?.getBoundingClientRect().left <
+          this._trees[i]?.getBoundingClientRect().left <
             this._t_rex.getBoundingClientRect().right &&
-          trees[i]?.getBoundingClientRect().right >
+          this._trees[i]?.getBoundingClientRect().right >
             this._t_rex.getBoundingClientRect().left &&
-          trees[i]?.getBoundingClientRect().top <
+          this._trees[i]?.getBoundingClientRect().top <
             this._t_rex.getBoundingClientRect().bottom
         ) {
           console.log("game crashed!");

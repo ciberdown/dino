@@ -4,12 +4,18 @@ class Dino {
         this._jump_mt = 1;
         this._jump_sec = 1;
         this._speed_num = 1;
+        this._trees = [
+            document.getElementById("tree-one"),
+            document.getElementById("tree-two"),
+            document.getElementById("tree-three"),
+        ];
         this.header_text_one = "T-Rex Chrome Dino Game";
         this.text_one = "T-Rex Dinosaur - a replica of the hidden game from Chrome offline mode. Press Space to start the game online and jump your Dino, use down arrow (↓) to duck.";
         this._t_rex = document.getElementById("t_rex");
         this._jump_mt = this._jump_mt;
         this._jump_sec = this._jump_sec;
         this._speed_num = this._speed_num;
+        this._trees = this._trees;
         this.game_logic_control();
     }
     get jump_sec() {
@@ -72,21 +78,16 @@ class Dino {
         }
     }
     gameOver() {
-        const trees = [
-            document.getElementById("tree-one"),
-            document.getElementById("tree-two"),
-            document.getElementById("tree-three"),
-        ];
         const check_collision = setInterval(() => {
             var _a, _b, _c;
-            for (let i = 0; i < trees.length; i++) {
-                if (((_a = trees[i]) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect().left) <
+            for (let i = 0; i < this._trees.length; i++) {
+                if (((_a = this._trees[i]) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect().left) <
                     this._t_rex.getBoundingClientRect().right &&
-                    ((_b = trees[i]) === null || _b === void 0 ? void 0 : _b.getBoundingClientRect().right) >
+                    ((_b = this._trees[i]) === null || _b === void 0 ? void 0 : _b.getBoundingClientRect().right) >
                         this._t_rex.getBoundingClientRect().left &&
-                    ((_c = trees[i]) === null || _c === void 0 ? void 0 : _c.getBoundingClientRect().top) <
+                    ((_c = this._trees[i]) === null || _c === void 0 ? void 0 : _c.getBoundingClientRect().top) <
                         this._t_rex.getBoundingClientRect().bottom) {
-                    console.log(i);
+                    console.log("game crashed!");
                 }
             }
         }, 100);
