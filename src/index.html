@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="m-0 box-border p-0 font-sans">
+<html class="" style="margin: 0; box-sizing: border-box; padding: 0;">
   <!-- set default styles -->
   <style>
     .dot {
@@ -40,13 +40,21 @@
         transform: translateX(-700px);
       }
     }
+    .jump{
+      animation: top-to-down 1.2s ease-in-out 0s 1 forwards alternate;
+    }
+    @keyframes top-to-down {
+      50%{
+        transform: translateY(-130px);
+      }
+    }
   </style>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="/src/output.css" rel="stylesheet" />
   </head>
-  <body style="position: relative; width: 500px">
+  <body id="body" style="position: relative; width: 500px">
     <div
       style="
         position: absolute;
@@ -71,7 +79,7 @@
         <!--  dots -->
       </div>
       <hr style="width: 500px; position: absolute; left: 0; right: 0; top:
-      260px; height: 1.5px; background-color: black;" //ground />
+      253px; height: 1.5px; background-color: black;" //ground />
       <img
         id="t_rex"
         style="
@@ -100,7 +108,8 @@
       </div>
       <img
         id="game_over"
-        class="hidden w-20"
+        class=""
+        style="display: none; width: 5rem;"
         src="./files/game_over.gif"
         alt=""
       />

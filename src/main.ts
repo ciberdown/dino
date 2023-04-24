@@ -26,9 +26,16 @@ class Dino {
   }
   game_logic_control() {
     this.ground_dots_moving();
+    document.getElementById("body")?.addEventListener('keydown',()=>{
+      this.jump()
+      setTimeout(()=>{
+        this._t_rex.classList.remove('jump')
+      },1200)
+    })
   }
   jump() {
     //jump by press space key and _jump_mt
+    this._t_rex.classList.add("jump")
   }
   trees_moving() {
     //handle trees moving with ._speed_num
@@ -39,7 +46,7 @@ class Dino {
   ground_dots_moving() {
     for (let i = 1; i < 500; i++) {
       const newDot: HTMLHRElement = <HTMLHRElement>document.createElement("hr");
-      const dot_top: string =(Math.floor(Math.random() * 10) + 252) + "px";
+      const dot_top: string = Math.floor(Math.random() * 10) + 252 + "px";
 
       const ani_delay: string = Math.random() * 10 + "s";
       newDot.classList.add("dot", "z-10");

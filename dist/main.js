@@ -25,16 +25,24 @@ class Dino {
             this._jump_mt = num;
     }
     game_logic_control() {
+        var _a;
         this.ground_dots_moving();
+        (_a = document.getElementById("body")) === null || _a === void 0 ? void 0 : _a.addEventListener('keydown', () => {
+            this.jump();
+            setTimeout(() => {
+                this._t_rex.classList.remove('jump');
+            }, 1200);
+        });
     }
     jump() {
+        this._t_rex.classList.add("jump");
     }
     trees_moving() {
     }
     ground_dots_moving() {
         for (let i = 1; i < 500; i++) {
             const newDot = document.createElement("hr");
-            const dot_top = (Math.floor(Math.random() * 10) + 252) + "px";
+            const dot_top = Math.floor(Math.random() * 10) + 252 + "px";
             const ani_delay = Math.random() * 10 + "s";
             newDot.classList.add("dot", "z-10");
             newDot.style.animationDelay = ani_delay;
