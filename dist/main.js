@@ -2,42 +2,62 @@
 class Dino {
     constructor() {
         this._jump_mt = 1;
+        this._jump_sec = 1;
         this._speed_num = 1;
         this.header_text_one = "T-Rex Chrome Dino Game";
         this.text_one = "T-Rex Dinosaur - a replica of the hidden game from Chrome offline mode. Press Space to start the game online and jump your Dino, use down arrow (↓) to duck.";
         this._t_rex = document.getElementById("t_rex");
         this._jump_mt = this._jump_mt;
+        this._jump_sec = this._jump_sec;
         this._speed_num = this._speed_num;
         this.game_logic_control();
+    }
+    get jump_sec() {
+        return this._jump_sec;
+    }
+    set jump_sec(second) {
+        if (second > 0) {
+            this._jump_sec = second;
+            this._t_rex.style.animationDuration = this._jump_sec + "s";
+        }
     }
     get speed() {
         return this._speed_num;
     }
     set speed(num) {
-        if (num > 0)
+        if (num > 0) {
             this._speed_num = num;
+            document.documentElement.style.setProperty("--ground-speed", (1 / this._speed_num) * 3.3 + "s");
+            document.documentElement.style.setProperty("--trees-speed", (1 / this._speed_num) * 6 + "s");
+            document.documentElement.style.setProperty("--cloud-speed", (1 / this._speed_num) * 30 + "s");
+            this._jump_sec = this._jump_sec - (this._speed_num - 1) * 0.2;
+            this._t_rex.style.animationDuration = this._jump_sec + "s";
+        }
     }
     get jump_mt() {
         return this._jump_mt;
     }
-    set jump_mt(num) {
-        if (num > 0)
-            this._jump_mt = num;
+    set jump_mt(meter) {
+        if (meter > 0) {
+            this.jump_mt = meter;
+            document.documentElement.style.setProperty("--min", "-" + this._jump_mt * 130 + "px");
+        }
     }
     game_logic_control() {
-        var _a;
+        this._t_rex.style.animationDuration = this.jump_sec * 1.5 + "s";
+        document.documentElement.style.setProperty("--min", "-" + this._jump_mt * 130 + "px");
+        document.documentElement.style.setProperty("--max", "-" + (this._jump_mt * 130 + 20) + "px");
         this.ground_dots_moving();
-        (_a = document.getElementById("body")) === null || _a === void 0 ? void 0 : _a.addEventListener('keydown', () => {
-            this.jump();
-            setTimeout(() => {
-                this._t_rex.classList.remove('jump');
-            }, 1200);
-        });
+        this.jump();
+        this.gameOver();
     }
     jump() {
-        this._t_rex.classList.add("jump");
-    }
-    trees_moving() {
+        document.documentElement.addEventListener("keydown", () => {
+            this._t_rex.classList.add("jump");
+            setTimeout(() => {
+                this._t_rex.classList.remove("jump");
+            }, (this._jump_sec * 1.5 - 0.15) * 1000);
+        });
     }
     ground_dots_moving() {
         for (let i = 1; i < 500; i++) {
@@ -52,6 +72,24 @@ class Dino {
         }
     }
     gameOver() {
+        const trees = [
+            document.getElementById("tree-one"),
+            document.getElementById("tree-two"),
+            document.getElementById("tree-three"),
+        ];
+        const check_collision = setInterval(() => {
+            var _a, _b, _c;
+            for (let i = 0; i < trees.length; i++) {
+                if (((_a = trees[i]) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect().left) <
+                    this._t_rex.getBoundingClientRect().right &&
+                    ((_b = trees[i]) === null || _b === void 0 ? void 0 : _b.getBoundingClientRect().right) >
+                        this._t_rex.getBoundingClientRect().left &&
+                    ((_c = trees[i]) === null || _c === void 0 ? void 0 : _c.getBoundingClientRect().top) <
+                        this._t_rex.getBoundingClientRect().bottom) {
+                    console.log(i);
+                }
+            }
+        }, 100);
     }
     restartGame() {
     }

@@ -1,5 +1,6 @@
 class Dino {
-  private _jump_mt: number = 1;
+  private _jump_mt: number = 1; //*130
+  private _jump_sec: number = 1; //*1.5
   private _speed_num: number = 1;
   readonly header_text_one: string = "T-Rex Chrome Dino Game";
   readonly text_one: string =
@@ -9,39 +10,75 @@ class Dino {
   ) as HTMLImageElement;
   constructor() {
     this._jump_mt = this._jump_mt;
+    this._jump_sec = this._jump_sec;
     this._speed_num = this._speed_num;
     this.game_logic_control();
+  }
+  get jump_sec(): number {
+    return this._jump_sec;
+  }
+  set jump_sec(second: number) {
+    if (second > 0) {
+      this._jump_sec = second;
+      this._t_rex.style.animationDuration = this._jump_sec + "s";
+    }
   }
   get speed(): number {
     return this._speed_num;
   }
   set speed(num: number) {
-    if (num > 0) this._speed_num = num;
+    if (num > 0) {
+      this._speed_num = num;
+      document.documentElement.style.setProperty(
+        "--ground-speed",
+        (1 / this._speed_num) * 3.3 + "s"
+      );
+      document.documentElement.style.setProperty(
+        "--trees-speed",
+        (1 / this._speed_num) * 6 + "s"
+      );
+      document.documentElement.style.setProperty(
+        "--cloud-speed",
+        (1 / this._speed_num) * 30 + "s"
+      );
+      this._jump_sec = this._jump_sec - (this._speed_num - 1) * 0.2;
+      this._t_rex.style.animationDuration = this._jump_sec + "s";
+    }
   }
   get jump_mt(): number {
     return this._jump_mt;
   }
-  set jump_mt(num: number) {
-    if (num > 0) this._jump_mt = num;
+  set jump_mt(meter: number) {
+    if (meter > 0) {
+      this.jump_mt = meter;
+      document.documentElement.style.setProperty(
+        "--min",
+        "-" + this._jump_mt * 130 + "px"
+      );
+    }
   }
   game_logic_control() {
+    this._t_rex.style.animationDuration = this.jump_sec * 1.5 + "s";
+    document.documentElement.style.setProperty(
+      "--min",
+      "-" + this._jump_mt * 130 + "px"
+    );
+    document.documentElement.style.setProperty(
+      "--max",
+      "-" + (this._jump_mt * 130 + 20) + "px"
+    );
     this.ground_dots_moving();
-    document.getElementById("body")?.addEventListener('keydown',()=>{
-      this.jump()
-      setTimeout(()=>{
-        this._t_rex.classList.remove('jump')
-      },1200)
-    })
+    this.jump();
+    this.gameOver();
   }
   jump() {
-    //jump by press space key and _jump_mt
-    this._t_rex.classList.add("jump")
-  }
-  trees_moving() {
-    //handle trees moving with ._speed_num
-    //handle trees random size
-    //handle cloudes moving with ._speed_num
-    //increase speed every minute
+    //jump by press space key (jump_mt & jump_sec)
+    document.documentElement.addEventListener("keydown", () => {
+      this._t_rex.classList.add("jump");
+      setTimeout(() => {
+        this._t_rex.classList.remove("jump");
+      }, (this._jump_sec * 1.5 - 0.15) * 1000);
+    });
   }
   ground_dots_moving() {
     for (let i = 1; i < 500; i++) {
@@ -58,6 +95,25 @@ class Dino {
   }
   gameOver() {
     //check game over!
+    const trees: HTMLImageElement[] = <HTMLImageElement[]>[
+      document.getElementById("tree-one"),
+      document.getElementById("tree-two"),
+      document.getElementById("tree-three"),
+    ];
+    const check_collision: NodeJS.Timer = setInterval(() => {
+      for (let i = 0; i < trees.length; i++) {
+        if (
+          trees[i]?.getBoundingClientRect().left <
+            this._t_rex.getBoundingClientRect().right &&
+          trees[i]?.getBoundingClientRect().right >
+            this._t_rex.getBoundingClientRect().left &&
+          trees[i]?.getBoundingClientRect().top <
+            this._t_rex.getBoundingClientRect().bottom
+        ) {
+          console.log("game crashed!");
+        }
+      }
+    }, 100);
   }
   restartGame() {
     //restart whole game

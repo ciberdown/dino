@@ -1,0 +1,62 @@
+.dot {
+  position: absolute;
+  background-color: black;
+  height: 2px;
+  width: 2px;
+  right: -10px;
+  animation: right-to-left linear normal infinite forwards;
+  animation-duration: var(--ground-speed);
+}
+@keyframes right-to-left {
+  100% {
+    transform: translateX(-500px);
+  }
+}
+.cloud {
+  position: absolute;
+  animation: cloud-right-to-left linear 0s infinite forwards;
+  animation-duration: var(--cloud-speed);
+}
+@keyframes cloud-right-to-left {
+  0% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(-600px);
+  }
+}
+.tree {
+  position: absolute;
+  right: -50px;
+  animation: tree-right-to-left linear infinite forwards;
+  animation-duration: var(--trees-speed);
+}
+@keyframes tree-right-to-left {
+  0% {
+    transform: translateX(200px);
+  }
+  100% {
+    transform: translateX(-700px);
+  }
+}
+.jump {
+  animation: top-to-down ease-in-out 0s 1 forwards alternate;
+}
+@keyframes top-to-down {
+  40% {
+    transform: translateY(var(--min));
+  }
+  50% {
+    transform: translateY(var(--max));
+  }
+  60% {
+    transform: translateY(var(--min));
+  }
+}
+:root {
+  --min: -130px;
+  --max: -140px;
+  --ground-speed: 3.3s;
+  --cloud-speed:30s;
+  --trees-speed:6s;
+}

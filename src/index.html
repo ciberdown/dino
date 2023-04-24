@@ -2,57 +2,12 @@
 <html class="" style="margin: 0; box-sizing: border-box; padding: 0;">
   <!-- set default styles -->
   <style>
-    .dot {
-      position: absolute;
-      background-color: black;
-      height: 2px;
-      width: 2px;
-      right: -10px;
-      animation: right-to-left 3.3s linear normal infinite forwards;
-    }
-    @keyframes right-to-left {
-      100% {
-        transform: translateX(-500px);
-      }
-    }
-    .cloud {
-      position: absolute;
-      animation: cloud-right-to-left 30s linear 0s infinite forwards;
-    }
-    @keyframes cloud-right-to-left {
-      0% {
-        transform: translateX(100px);
-      }
-      100% {
-        transform: translateX(-600px);
-      }
-    }
-    .tree {
-      position: absolute;
-      right: -50px;
-      animation: tree-right-to-left 6s linear infinite forwards;
-    }
-    @keyframes tree-right-to-left {
-      0%{
-        transform: translateX(200px);
-      }
-      100% {
-        transform: translateX(-700px);
-      }
-    }
-    .jump{
-      animation: top-to-down 1.2s ease-in-out 0s 1 forwards alternate;
-    }
-    @keyframes top-to-down {
-      50%{
-        transform: translateY(-130px);
-      }
-    }
+   
   </style>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/src/output.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
   </head>
   <body id="body" style="position: relative; width: 500px">
     <div
@@ -102,9 +57,9 @@
           overflow: hidden;
         "
       >
-        <img class="tree" style="animation-delay: 4s;top: 20px;" src="../src/files/tree_one.png" alt="" />
-        <img class="tree" style="top: 43px;" src="../src/files/tree_two.png" alt="" />
-        <img class="tree" style="animation-delay: 1.5s; top: 40px;" src="../src/files/tree_three.png" alt="" />
+        <img class="tree" id="tree-one" style="animation-delay: 4s;top: 20px;" src="../src/files/tree_one.png" alt="" />
+        <img class="tree" id="tree-two" style="top: 43px;" src="../src/files/tree_two.png" alt="" />
+        <img class="tree" id="tree-three" style="animation-delay: 1.5s; top: 40px;" src="../src/files/tree_three.png" alt="" />
       </div>
       <img
         id="game_over"
